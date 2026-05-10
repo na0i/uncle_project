@@ -1,40 +1,27 @@
-import { useState } from 'react'
 import './About.css'
-import chevronLeft from '../assets/chevron-left.svg'
-import chevronRight from '../assets/chevron-right.svg'
 import mainImage from '../assets/main.svg'
 import mainbox1Image from '../assets/mainbox1.svg'
 import mainbox2Image from '../assets/mainbox2.svg'
 import companyImage from '../assets/company.png'
 
 function About() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  const carouselItems = [
+  const courseItems = [
     {
-      chip: '기업교육',
-      title: '특허 경영 강화 전략',
-      description: '2025.09.25(화) 14:30 장소'
+      chip: 'Succession',
+      title: 'Succession Course',
+      description: '차세대 리더 육성을 위한 핵심인재 선발 및 육성 프로그램'
     },
     {
-      chip: '기업교육',
-      title: '특허 경영 강화 전략',
-      description: '2025.09.25(화) 14:30 장소'
+      chip: 'Leadership',
+      title: 'Leadership Journey Course',
+      description: '직책별 맞춤형 리더십 역량 강화 및 조직 관리 역량 제고'
     },
     {
-      chip: '기업교육',
-      title: '특허 경영 강화 전략',
-      description: '2025.09.25(화) 14:30 장소'
+      chip: 'Hierarchy',
+      title: <>계층 및<br />승진자 과정</>,
+      description: '직급별 필수 역량 습득 및 승진자 대상 마인드셋 변화 교육'
     }
   ]
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselItems.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselItems.length) % carouselItems.length)
-  }
 
   return (
     <div className="about">
@@ -89,39 +76,17 @@ function About() {
         </div>
       </section>
 
-      {/* 섹션 3: 큰 타이틀 + 캐로셀 박스 */}
+      {/* 섹션 3: 큰 타이틀 + 교육과정 카드 */}
       <section className="about-section-3">
         <div className="section-3-container">
-          <h2 className="section-3-title">교육 프로그램</h2>
-          <div className="carousel-wrapper">
-            <button className="carousel-btn prev" onClick={prevSlide}>
-              <img src={chevronLeft} alt="이전" className="carousel-btn-icon" />
-            </button>
-            <div className="carousel-container">
-              <div 
-                className="carousel-track"
-                style={{ transform: `translateX(-${currentSlide * 33.333}%)` }}
-              >
-                {carouselItems.map((item, index) => (
-                  <div key={index} className="carousel-item">
-                    <div className="carousel-chip">{item.chip}</div>
-                    <h3 className="carousel-title">{item.title}</h3>
-                    <p className="carousel-description">{item.description}</p>
-                  </div>
-                ))}
+          <h2 className="section-3-title">교육과정</h2>
+          <div className="course-grid">
+            {courseItems.map((item, index) => (
+              <div key={index} className="course-card">
+                <div className="course-chip">{item.chip}</div>
+                <h3 className="course-card-title">{item.title}</h3>
+                <p className="course-card-description">{item.description}</p>
               </div>
-            </div>
-            <button className="carousel-btn next" onClick={nextSlide}>
-              <img src={chevronRight} alt="다음" className="carousel-btn-icon" />
-            </button>
-          </div>
-          <div className="carousel-dots">
-            {carouselItems.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${index === currentSlide ? 'active' : ''}`}
-                onClick={() => setCurrentSlide(index)}
-              />
             ))}
           </div>
         </div>

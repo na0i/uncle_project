@@ -35,11 +35,11 @@
 }
 
 .course-boxes-container {
-  max-width: 1400px;
+  max-width: 1000px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
 .course-box {
@@ -48,13 +48,28 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .course-box:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 24px rgba(0, 156, 94, 0.3);
+  opacity: 0.9;
+}
+
+.course-box.active {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 156, 94, 0.5);
+  border: 3px solid #009C5E;
+}
+
+.course-box.active .course-box-content {
+  background: linear-gradient(to top, rgba(0, 156, 94, 0.8) 0%, transparent 100%);
+}
+
+.course-box.active .course-box-arrow-icon {
+  transform: rotate(90deg);
 }
 
 .course-box-background {
@@ -91,39 +106,36 @@
   font-weight: bold;
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  white-space: pre-line;
+  line-height: 1.2;
 }
 
-.course-box-arrow-btn {
-  background-color: rgba(255, 255, 255, 0.35);
-  color: #009C5E;
-  border: none;
+.course-box-indicator {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgba(255, 255, 255, 0.35);
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  flex-shrink: 0;
-  padding: 0;
+  flex-shrink: 0; /* 찌그러짐 방지 */
 }
 
 .course-box-arrow-icon {
   width: 20px;
   height: 20px;
   filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.course-box-arrow-btn:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  transform: scale(1.1);
+.course-box.active .course-box-indicator {
+  background-color: #ffffff;
 }
 
-.course-box-arrow-btn:hover .course-box-arrow-icon {
-  filter: brightness(0) invert(1);
+.course-box.active .course-box-arrow-icon {
+  filter: brightness(0) saturate(100%) invert(39%) sepia(88%) saturate(438%) hue-rotate(124deg) brightness(95%) contrast(101%); /* #009C5E */
+  transform: rotate(90deg);
 }
 
 /* 상세 섹션들 */
